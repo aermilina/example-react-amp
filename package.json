@@ -1,0 +1,76 @@
+{
+  "name": "ts-react-webpack-ssr",
+  "license": "MIT",
+  "version": "1.0.0",
+  "scripts": {
+    "build:beta:server": "webpack --config  webpack.server.js --env serverName=beta",
+    "build:stage:server": "webpack --config  webpack.server.js --env serverName=stage",
+    "build:test:server": "webpack --config  webpack.server.js --env serverName=test",
+    "start": "node ./dist/server.js",
+    "lint": "eslint --ext .tsx,.ts,.js .",
+    "lint:fix": "eslint './src/**/*.{ts,tsx}' --fix",
+    "tsc": "tsc --noEmit",
+    "format:write": "npm run prettier -- --write",
+    "prettier": "prettier '**/*.{ts,tsx,js,json,html,md}'"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged && tsc --noEmit"
+    }
+  },
+  "lint-staged": {
+    "*.{json,html,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{ts,tsx,js}": [
+      "prettier --write",
+      "yarn lint:fix",
+      "git add"
+    ]
+  },
+  "dependencies": {
+    "@babel/core": "^7.18.2",
+    "@babel/plugin-transform-react-jsx": "^7.17.12",
+    "@babel/preset-env": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
+    "@babel/preset-typescript": "^7.17.12",
+    "@svgr/webpack": "^8.1.0",
+    "@types/express": "^4.17.13",
+    "@types/isomorphic-fetch": "^0.0.36",
+    "@types/node": "^17.0.35",
+    "@types/react": "^18.2.45",
+    "@types/react-dom": "^18.2.18",
+    "@typescript-eslint/eslint-plugin": "^6.21.0",
+    "@typescript-eslint/parser": "^6.21.0",
+    "babel": "^6.23.0",
+    "babel-loader": "^8.2.5",
+    "cache-loader": "^4.1.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^7.2.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-prettier": "5.0.0",
+    "eslint-plugin-react": "^7.22.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "express": "^4.18.2",
+    "html-react-parser": "^1.4.14",
+    "husky": "^4.3.8",
+    "isomorphic-fetch": "^3.0.0",
+    "lint-staged": "^10.5.3",
+    "prettier": "^3.1.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-helmet-async": "^2.0.4",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.21.0",
+    "styled-components": "^6.1.1",
+    "styled-tools": "^1.7.2",
+    "typesafe-actions": "^5.1.0",
+    "typescript": "^5.3.3",
+    "url-loader": "^4.1.1",
+    "webpack": "^5.89.0",
+    "webpack-cli": "^4.9.2",
+    "webpack-node-externals": "^3.0.0"
+  }
+}
